@@ -46,6 +46,18 @@
             <artifactId>jna-platform</artifactId>
             <version>5.13.0</version>
         </dependency>
+        <!-- Suport pentru decodare MP3 în Java AudioSystem -->
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>mp3spi</artifactId>
+            <version>1.9.5.4</version>
+        </dependency>
+        <!-- Pentru salvarea/încărcarea fișierelor JSON -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
+        </dependency>
     </dependencies>
 
     <build>
