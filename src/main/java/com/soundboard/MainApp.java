@@ -25,8 +25,10 @@ public class MainApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        // Afișăm în consolă plăcile audio detectate
-        AudioEngine.listAudioDevices();
+        // Afișăm în consolă dispozitivele audio detectate
+        System.out.println("=== DISPOZITIVE AUDIO DETECTATE ===");
+        AudioEngine.getAvailableOutputDevices().forEach(System.out::println);
+        System.out.println("===================================");
     }
 
     public static void main(String[] args) {
