@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.List;
 
 public class MainApp extends Application {
@@ -27,26 +28,36 @@ public class MainApp extends Application {
         List<String> availableDevices = AudioEngine.getAvailableOutputDevices();
 
         // --- COMPONENTE GUI PENTRU SETĂRI AUDIO ---
-        Label titleLabel = new Label("⚙️ Setări Dispozitive Audio");
-        titleLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        Label titleLabel = new Label("⚙ Setări Dispozitive Audio");
+        titleLabel.getStyleClass().add("header-label");
 
         // Dropdown Dispozitiv Primar (Căști)
         Label primaryLabel = new Label("Dispozitiv Primar (Căști / Monitorizare):");
+        primaryLabel.getStyleClass().add("form-label");
+
         ComboBox<String> primaryDeviceBox = new ComboBox<>(FXCollections.observableArrayList(availableDevices));
+        primaryDeviceBox.getStyleClass().add("combo-box");
+        primaryDeviceBox.setPromptText("Selectează Căști...");
+        primaryDeviceBox.setMaxWidth(Double.MAX_VALUE);
         if (configData.settings.getPrimaryDevice() != null && availableDevices.contains(configData.settings.getPrimaryDevice())) {
             primaryDeviceBox.setValue(configData.settings.getPrimaryDevice());
         }
 
         // Dropdown Dispozitiv Secundar (Microfon Virtual / VB-Cable)
         Label secondaryLabel = new Label("Dispozitiv Secundar (VB-Cable / Stream Aux):");
+        secondaryLabel.getStyleClass().add("form-label");
+
         ComboBox<String> secondaryDeviceBox = new ComboBox<>(FXCollections.observableArrayList(availableDevices));
+        secondaryDeviceBox.getStyleClass().add("combo-box");
+        secondaryDeviceBox.setPromptText("Selectează VB-Cable...");
+        secondaryDeviceBox.setMaxWidth(Double.MAX_VALUE);
         if (configData.settings.getSecondaryDevice() != null && availableDevices.contains(configData.settings.getSecondaryDevice())) {
             secondaryDeviceBox.setValue(configData.settings.getSecondaryDevice());
         }
 
         // Buton Salvare Setări
         Button saveSettingsButton = new Button("💾 Salvează Setările Audio");
-        saveSettingsButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 15px;");
+        saveSettingsButton.getStyleClass().add("btn-success");
 
         saveSettingsButton.setOnAction(e -> {
             String selectedPrimary = primaryDeviceBox.getValue();
@@ -67,7 +78,7 @@ public class MainApp extends Application {
 
         // --- BUTOANE DE CONTROALE AUDIO (PLAY & STOP) ---
         Button playTestButton = new Button("▶ Redă Sunet Test");
-        playTestButton.setStyle("-fx-padding: 8px 15px;");
+        playTestButton.getStyleClass().add("btn-secondary");
 
         playTestButton.setOnAction(e -> {
             String pDev = primaryDeviceBox.getValue();
@@ -86,18 +97,42 @@ public class MainApp extends Application {
 
         // BUTONUL STOP ALL SOUNDS (PANIC BUTTON)
         Button stopButton = new Button("⏹ Stop All Sounds");
-        stopButton.setStyle("-fx-background-color: #ff4d4d; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8px 15px;");
+        stopButton.getStyleClass().add("btn-danger");
         stopButton.setOnAction(e -> AudioEngine.stopAllSounds());
 
         // Grupăm butoanele de test și oprire pe un rând orizontal (HBox)
-        HBox actionButtons = new HBox(10, playTestButton, stopButton);
+        HBox actionButtons = new HBox(12, playTestButton, stopButton);
         actionButtons.setAlignment(Pos.CENTER_LEFT);
 
-        VBox root = new VBox(12, titleLabel, primaryLabel, primaryDeviceBox, secondaryLabel, secondaryDeviceBox, saveSettingsButton, actionButtons);
-        root.setPadding(new Insets(20));
-        root.setAlignment(Pos.CENTER_LEFT);
+        // Container stilizat ca card/panel
+        VBox settingsCard = new VBox(12,
+                titleLabel,
+                primaryLabel,
+                primaryDeviceBox,
+                secondaryLabel,
+                secondaryDeviceBox,
+                saveSettingsButton,
+                actionButtons
+        );
+        settingsCard.getStyleClass().add("panel");
+        settingsCard.setPadding(new Insets(20));
 
-        Scene scene = new Scene(root, 580, 420);
+        // Container principal al ferestrei
+        VBox root = new VBox(settingsCard);
+        root.getStyleClass().add("main-container");
+        root.setPadding(new Insets(20));
+        root.setAlignment(Pos.TOP_LEFT);
+
+        Scene scene = new Scene(root, 600, 480);
+
+        // Atasare CSS stylesheet din resurse
+        URL cssResource = getClass().getResource("/css/styles.css");
+        if (cssResource != null) {
+            scene.getStylesheets().add(cssResource.toExternalForm());
+        } else {
+            System.err.println("[Atenție] Nu s-a găsit fișierul /css/styles.css în resurse.");
+        }
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
