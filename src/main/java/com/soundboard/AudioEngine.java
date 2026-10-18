@@ -28,7 +28,13 @@ public class AudioEngine {
 
         for (Mixer.Info info : mixerInfos) {
             Mixer mixer = AudioSystem.getMixer(info);
-            // Verificam daca dispozitivul suporta linii de iesire (SourceDataLine)
+
+            // Excludem porturile fizice de intrare/microfoane (PortMixer)
+            if (mixer.getClass().getSimpleName().contains("Port")) {
+                continue;
+            }
+
+            // Verificam daca mixer-ul suporta linii de iesire (SourceDataLine)
             Line.Info[] lineInfos = mixer.getSourceLineInfo();
             if (lineInfos.length > 0) {
                 if (!devices.contains(info.getName())) {
