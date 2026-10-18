@@ -1,0 +1,14 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Maven output
+target/
+
+# Loguri și fișiere sistem
+*.log
+.DS_Store
+Thumbs.db
