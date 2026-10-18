@@ -1,8 +1,7 @@
-[
-  {
-    "id": "1",
-    "name": "Keyboard Typing Test",
-    "filePath": "sounds/test.wav",
-    "hotkey": "F1"
-  }
-]
+{
+  "settings": {
+    "primaryDevice": "SteelSeries Sonar - Gaming (SteelSeries Sonar Virtual Audio Device)",
+    "secondaryDevice": "SteelSeries Sonar - Microphone (SteelSeries Sonar Virtual Audio Device)"
+  },
+  "sounds": []
+}
