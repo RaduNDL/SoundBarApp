@@ -1,0 +1,125 @@
+/* Base Theme Setup */
+.main-container {
+    -fx-background-color: #0F172A; /* Deep dark blue */
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Typography */
+.label {
+    -fx-text-fill: #CBD5E1; /* Soft white/gray */
+    -fx-font-size: 14px;
+}
+
+.header-label {
+    -fx-text-fill: #F8FAFC;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 10 0;
+}
+
+/* Panels */
+.panel {
+    -fx-background-color: #1E293B; /* Lighter blue-gray panel */
+    -fx-background-radius: 8px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 4);
+}
+
+/* ComboBoxes */
+.combo-box {
+    -fx-background-color: #334155;
+    -fx-background-radius: 4px;
+    -fx-text-fill: white;
+}
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #334155;
+}
+.combo-box .list-cell:hover {
+    -fx-background-color: #475569;
+}
+
+/* Buttons */
+.button {
+    -fx-background-radius: 4px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+.btn-success {
+    -fx-background-color: #22C55E; /* Bright green */
+}
+.btn-success:hover {
+    -fx-background-color: #16A34A;
+}
+
+.btn-danger {
+    -fx-background-color: #EF4444; /* Bright red */
+}
+.btn-danger:hover {
+    -fx-background-color: #DC2626;
+}
+
+.btn-secondary {
+    -fx-background-color: #E2E8F0;
+    -fx-text-fill: #0F172A; /* Dark text for contrast */
+}
+.btn-secondary:hover {
+    -fx-background-color: #CBD5E1;
+}
+
+.btn-small {
+    -fx-background-color: #475569;
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+}
+.btn-small:hover { -fx-background-color: #64748B; }
+
+.btn-bind {
+    -fx-background-color: #3B82F6; /* Bright blue for binding */
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+}
+.btn-bind:hover { -fx-background-color: #2563EB; }
+
+/* Sound Pads (TilePane Items) */
+.sound-pad {
+    -fx-background-color: #1E293B;
+    -fx-background-radius: 8px;
+    -fx-padding: 15px;
+    -fx-border-color: #334155;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+    -fx-alignment: center;
+    -fx-pref-width: 230px;
+}
+
+.pad-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #F8FAFC;
+    -fx-padding: 0 0 5 0;
+}
+
+.pad-path {
+    -fx-font-size: 11px;
+    -fx-text-fill: #94A3B8;
+    -fx-padding: 0 0 10 0;
+}
+
+.pad-keybind {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #38BDF8;
+    -fx-padding: 10 0 0 0;
+}
+
+/* ScrollPane Fix for Dark Theme */
+.transparent-scroll {
+    -fx-background-color: transparent;
+}
+.transparent-scroll .viewport {
+    -fx-background-color: transparent;
+}
